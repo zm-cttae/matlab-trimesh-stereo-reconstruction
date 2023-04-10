@@ -403,9 +403,9 @@ checkerboardCentroid.Y = 0;
 %> ========================================================================
 %% @subsection Restrict point cloud to image scene dimensions
 %> Limits:
-%>  - point cloud width *x* = ?2 × scene image width
-%>  - point cloud height *y* = ?2 × scene image height
-%>  - point cloud depth *z* = ?0.5 × scene image (height + width)
+%>  - point cloud width *x* =  scene image width
+%>  - point cloud height *y* = sqrt(2) scene image height
+%>  - point cloud depth *z* = sqrt(0.5) × scene image (height + width)
 waitbar(0.9, wb, "Filter-processing point cloud co-ordinates.");
 limits = struct;
 cacheAxes = char(fieldnames(pointsCache));
@@ -413,7 +413,7 @@ cacheAxes = char(fieldnames(pointsCache));
 for m = 1:3
     switch m
         case 1
-            bound = sqrt(2) / 2 * approxImageWidth;
+            bound = approxImageWidth;
         case 2
             bound = sqrt(2) / 2 * approxImageHeight;
         otherwise
@@ -503,7 +503,7 @@ clearvars cacheAxes;
 %>  @note We reverse the geometric transforms.
 waitbar(0.925, wb, "Show surface mesh plot.");
 figure;
-mesh(gridPoints.X, gridPoints.Z, -1 .* gridPoints.Y);
+mesh(-1 .* gridPoints.X, gridPoints.Z, -1 .* gridPoints.Y);
 title '\color{black} Mesh Triangulation';
 xlabel 'x (horizontal displacement in m)';
 ylabel 'y (vertical displacement in m)';

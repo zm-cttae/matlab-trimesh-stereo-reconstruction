@@ -377,7 +377,7 @@ cacheAxes = char(fieldnames(pointsCache));
 for m = 1:3
     switch m
         case 1
-            bound = sqrt(2) / 2 * approxImageWidth;
+            bound = approxImageWidth;
         case 2
             bound = sqrt(2) / 2 * approxImageHeight;
         otherwise
@@ -467,7 +467,8 @@ clearvars cacheAxes;
 %>  @figure 3D connected surface mesh plot of the point cloud.
 %>  @note We reverse the geometric transforms.
 waitbar(0.925, wb, "Show surface mesh plot.");
-mesh(gridPoints.X, gridPoints.Z, -1 .* gridPoints.Y);
+figure;
+mesh(-1 .* gridPoints.X, gridPoints.Z, -1 .* gridPoints.Y);
 title 'Mesh Triangulation';
 xlabel 'x (horizontal displacement in m)';
 ylabel 'y (vertical displacement in m)';
