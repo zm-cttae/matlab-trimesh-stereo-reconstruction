@@ -265,7 +265,7 @@ pixelDensityMm = mrdivide(                                              ...
     ], 2)                                                               ...
 );
 approxImageHeight = 2 * mean([size(F1, 1), size(F2, 1)], 2) / pixelDensityMm;
-approxImageWidth = 2 * mean([size(F1, 2), size(F2, 2)], 2) / pixelDensityMm;
+approxImageWidth = 2 * sqrt(2) * mean([size(F1, 2), size(F2, 2)], 2) / pixelDensityMm;
 
 %> ========================================================================
 %% @subsection Display an "valid" output anaglyph image
@@ -367,8 +367,8 @@ checkerboardCentroid.Y = 0;
 %> ========================================================================
 %% @subsection Restrict point cloud to image scene dimensions
 %> Limits:
-%>  - point cloud width *x* = ?2 × scene image width
-%>  - point cloud height *y* = ?2 × scene image height
+%>  - point cloud width *x* = scene image width
+%>  - point cloud height *y* = sqrt(0.5) × scene image height
 %>  - point cloud depth *z* = ?0.5 × scene image (height + width)
 waitbar(0.9, wb, "Filter-processing point cloud co-ordinates.");
 limits = struct;
@@ -379,7 +379,7 @@ for m = 1:3
         case 1
             bound = approxImageWidth;
         case 2
-            bound = sqrt(2) / 2 * approxImageHeight;
+            bound = sqrt(0.5) * approxImageHeight;
         otherwise
             bound = mean([approxImageHeight, approxImageWidth], 2) / 2;
     end

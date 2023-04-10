@@ -287,7 +287,7 @@ pixelDensityMm = mrdivide(                                              ...
     ], 2)                                                               ...
 );
 approxImageHeight = 2 * mean([size(F1, 1), size(F2, 1)], 2) / pixelDensityMm;
-approxImageWidth = 2 * mean([size(F1, 2), size(F2, 2)], 2) / pixelDensityMm;
+approxImageWidth = 2 * sqrt(2) * mean([size(F1, 2), size(F2, 2)], 2) / pixelDensityMm;
 ```
 
 #### Display an "valid" output anaglyph image
@@ -409,8 +409,8 @@ checkerboardCentroid.Y = 0;
 #### Restrict point cloud to image scene dimensions
 
 Limits:
-- point cloud *x* = √2 × scene image width
-- point cloud *y* = √2 × scene image height
+- point cloud *x* = scene image width
+- point cloud *y* = √0.5 × scene image height
 - point cloud *z* = √0.5 × scene image (height + width)
 
 ```matlab
@@ -421,9 +421,9 @@ cacheAxes = char(fieldnames(pointsCache));
 for m = 1:3
     switch m
         case 1
-            bound = sqrt(2) / 2 * approxImageWidth;
+            bound = approxImageWidth;
         case 2
-            bound = sqrt(2) / 2 * approxImageHeight;
+            bound = sqrt(0.5) * approxImageHeight;
         otherwise
             bound = mean([approxImageHeight, approxImageWidth], 2) / 2;
     end
