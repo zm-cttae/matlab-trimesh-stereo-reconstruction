@@ -488,7 +488,7 @@ colorbar southoutside;
 rotate3d on;
 
 %> ========================================================================
-%% @section STL file generation from point cloud.
+%% @section STL file generation from point cloud
 %>  Using `surf2stl` for high stability & speed (low interpolation).
 waitbar(0.95, wb, "Writing STL output..");
 stlPath = char(fullfile(pwd, stlPath));
