@@ -1,8 +1,14 @@
 # `matlab-trimesh-stereo-reconstruction`
 
-MATLAB Computer Vision Toolbox script for stereo reconstruction as a tesselating 3D triangular mesh surface in STL format.
+<p align="center"><img src="./logo.svg" width="128px"/></p>
 
-This script is unique, because it implements userland logic for:
+MATLAB Computer Vision Toolbox script for STL stereo reconstruction.
+
+The script generates a tesselating 3D triangular mesh surface in STL format.
+
+It was also my BEng capstone project in biomechanical engineering - used to generate 3D models of the retinal fundus.
+
+What makes `matlab-trimesh-stereo-reconstruction` unique is that it implements userland logic for:
 - normalising a binocular disparity data map by combining multiple match methods
 - model-filtering the scene limits of the generated point cloud
 - post-processing the scene point cloud with an interpolating signal filter
